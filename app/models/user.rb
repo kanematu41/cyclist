@@ -7,4 +7,6 @@ class User < ApplicationRecord
   attachment :image #refileでの画像アップ用
 
   has_many :posts, dependent: :destroy
+
+  validates :name, presence: true
 end
