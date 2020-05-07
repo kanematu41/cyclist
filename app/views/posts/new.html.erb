@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>投稿</h3>
+
+			<%= form_for(@post) do |f| %>
+			<div class="field-post">
+				<%= f.label :title %>
+				<%= f.text_field :title %>
+			</div>
+
+			<div class="field-post">
+				<%= f.label :image %>
+				<%= f.file_field :image, :multiple => true %>
+			</div>
+
+			<div class="field-post">
+				<%= f.label :body %>
+				<%= f.text_field :body %>
+			</div>
+
+			<div class="action">
+				<%= f.submit %>
+			</div>
+			<% end %>
+
+		</div>
+	</div>
+</div>
