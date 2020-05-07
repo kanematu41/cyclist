@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>編集</h3>
+
+			<%= form_for(@user) do |f| %>
+			<%= render 'home/error_messages', model: f.object %>
+
+			<div class="field-post">
+				<%= f.label :名前 %>
+				<%= f.text_field :name %>
+			</div>
+
+			<div class="field-post">
+				<%= f.label :写真変更 %>
+				<%= f.attachment_field :image %>
+			</div>
+
+			<div class="field-post">
+				<%= f.label :自己紹介 %>
+				<%= f.text_area :introduction %>
+			</div>
+
+			<div class="action">
+				<%= f.submit %>
+			</div>
+
+			<% end %>
+		</div>
+	</div>
+</div>
