@@ -1,0 +1,54 @@
+<% if flash[:notice] %>
+	<div class="flash">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>マイページ</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-1">
+			<%= attachment_image_tag(@user, :image, size:"200x200", fallback:"no_image.png") %>
+		</div>
+		<div class="col-xs-8 col-xs-offset-1">
+			<div class="row">
+				<div class="col-xs-2">
+					<label>名前</label>
+				</div>
+				<div class="col-xs-6">
+					<%= @user.name %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<label>自己紹介</label>
+				</div>
+				<div class="col-xs-6">
+					<%= @user.introduction %>
+				</div>
+			</div>
+			<%= link_to "編集", edit_user_path(@user) %>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<hr>
+					<% @posts.each do |post| %>
+						<div class="my-box">
+							<%= link_to post_path(post) do %>
+							<%= image_tag post.image[0].to_s, size:"250x250" %>
+							<% end %>
+							<% post.title %><!-- css乱れる -->
+						</div>
+					<% end %>
+		</div>
+	</div>
+</div>
