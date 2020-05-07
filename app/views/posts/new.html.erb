@@ -4,6 +4,7 @@
 			<h3>投稿</h3>
 
 			<%= form_for(@post) do |f| %>
+			<%= render 'home/error_messages', model: f.object %>
 			<div class="field-post">
 				<%= f.label :title %>
 				<%= f.text_field :title %>
