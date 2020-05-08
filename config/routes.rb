@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   	resource :comments, only:[:create, :destroy]
   	resource :likes, only:[:create, :destroy]
   end
+  resources :notifications, only:[:index, :destroy]
 
   post 'follow/:id' => 'relationships#create', as: 'follow'
   delete 'unfollow/:id' => 'relationships#destroy', as: 'unfollow'

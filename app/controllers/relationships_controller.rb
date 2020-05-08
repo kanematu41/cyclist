@@ -1,7 +1,11 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
+
 	def create
 		current_user.follow(params[:id])
+		# フォロー通知
+		@user = User.find(params[:id])
+		@user.create_notification_follow!(current_user)
 		redirect_back(fallback_location: root_path)
 	end
 
