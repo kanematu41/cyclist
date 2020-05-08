@@ -14,18 +14,37 @@
 	<div class="row">
 		<div class="col-xs-6 col-xs--offset-3">
 			<div class="postbox">
-				<%= attachment_image_tag(@post.user, :image, size:"50x50", fallback: "no_image.png") %>
-				<%= link_to user_path(@post.user) do %>
-				<%= @post.user.name %>
-				<% end %>
+				<div class="post-first">
+					<%= attachment_image_tag(@post.user, :image, size:"50x50", fallback: "no_image.png") %>
+					<%= link_to user_path(@post.user) do %>
+					<%= @post.user.name %>
+					<% end %>
+					<label class="title">
+						<%= @post.title %>
+					</label>
+				</div>
+
 			<div class="bxslider"><!-- js画像スライダー -->
 				<% @post.image.each do |image| %>
 					<%= image_tag(image.url, class:"post-image") %>
 				<% end %>
 			</div>
 			<hr>
-			<label>title</label>
-			<%= @post.title %><br>
+
+<!-- いいね機能 -->
+				<% if @post.liked_by?(current_user) %>
+					<%= link_to post_likes_path(@post), method: :delete do %>
+					<i class="fas fa-heart" style="color: red;"></i>
+					<% end %>
+					<%= @post.likes.count %>
+				<% else %>
+					<%= link_to post_likes_path(@post), method: :post do %>
+					<i class="far fa-heart"></i>
+					<% end %>
+					<%= @post.likes.count %>
+				<% end %>
+
+			<hr>
 			<label>body</label>
 			<%= @post.body %><br>
 
