@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>フォロー一覧</h3>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>image</th>
+						<th>name</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @follows.each do |user| %>
+					<tr>
+						<td><%= attachment_image_tag(user, :image, size:"50x50", fallback:"no_image.png") %></td>
+						<td><%= link_to user.name, user_path(user) %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -15,24 +15,41 @@
 		<div class="col-xs-2 col-xs-offset-1">
 			<%= attachment_image_tag(@user, :image, size:"200x200", fallback:"no_image.png") %>
 		</div>
-		<div class="col-xs-8 col-xs-offset-1">
-			<div class="row">
-				<div class="col-xs-2">
-					<label>名前</label>
-				</div>
-				<div class="col-xs-6">
-					<%= @user.name %>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-2">
-					<label>自己紹介</label>
-				</div>
-				<div class="col-xs-6">
-					<%= @user.introduction %>
-				</div>
-			</div>
-			<%= link_to "編集", edit_user_path(@user) %>
+
+		<div class="col-xs-5 col-xs-offset-1">
+			<table class="table">
+				<tr>
+					<th>名前</th>
+					<th><%= @user.name %></th>
+				</tr>
+
+				<tr>
+					<th>自己紹介</th>
+					<th><%= @user.introduction %></th>
+				</tr>
+
+				<tr>
+					<th>フォロー</th>
+					<th><%= link_to @user.follower.count, follows_path(@user) %></th>
+				</tr>
+
+				<tr>
+					<th>フォロワー</th>
+					<th><%= link_to @user.followed.count, followers_path(@user) %></th>
+				</tr>
+			</table>
+		</div>
+
+		<div class="col-xs-5 col-xs-offset-1">
+			<% if @user.id != current_user.id %>
+				<% if current_user.following?(@user) %>
+				<%= link_to "フォロー外す", unfollow_path(@user.id), method: :delete, class: "btn btn-primary col-xs-3" %>
+				<% else %>
+				<%= link_to "フォローする", follow_path(@user.id), method: :post, class: "btn btn-success col-xs-3" %>
+				<% end %>
+			<% end %>
+
+			<%= link_to "編集", edit_user_path(@user), class:"pull-right" %>
 		</div>
 	</div>
 </div>
