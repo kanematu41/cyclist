@@ -1,9 +1,11 @@
 class LikesController < ApplicationController
 	before_action :authenticate_user!
+	
 	def create
 		post = Post.find(params[:post_id])
 		like = current_user.likes.new(post_id: post.id)
 		like.save
+		post.create_notification_by(current_user) #いいね通知
 		redirect_back(fallback_location: root_path)
 	end
 

@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3 class="text-center">通知</h3>
+
+			<!-- 削除ボタンの表示の分岐 -->
+			<% if @notifications.exists? %>
+				<%= link_to notification_path(@notifications), method: :delete do %>
+					<i class="fas fa-trash" style="color: black;"></i>
+					<h7 style="color: black;">全削除</h7>
+				<% end %>
+			<% end %>
+			<hr>
+
+			<!-- 通知内容分岐 -->
+			<% if @notifications.exists? %>
+				<%= render @notifications %>
+			<% else %>
+				<p>通知はありません</p>
+			<% end %>
+		</div>
+	</div>
+</div>
