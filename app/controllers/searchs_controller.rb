@@ -1,4 +1,6 @@
 class SearchsController < ApplicationController
+	before_action :authenticate_user!
+
   def index
     @user_or_post = params[:option]
     if @user_or_post == "1"
