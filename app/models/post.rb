@@ -31,7 +31,7 @@ class Post < ApplicationRecord
 		notification = current_user.active_notifications.new(
 			post_id: id,
 			comment_id: comment_id,
-			visited_id: visited_id,
+			visited_id: user_id,
 			action: "comment"
 			)
 
