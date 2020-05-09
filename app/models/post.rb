@@ -62,4 +62,13 @@ class Post < ApplicationRecord
 			notification.save if notification.valid? #空でなければ
 		end
 	end
+
+	#検索
+  def Post.search(search, user_or_post)
+  	if user_or_post == "2"
+  		Post.where(["title LIKE ?", "%#{search}%"])
+  	else
+  		Post.all
+  	end
+  end
 end

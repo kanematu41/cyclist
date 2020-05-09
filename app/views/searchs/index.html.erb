@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+
+			<% if @user_or_post == "1" %>
+				<h4>User</h4>
+				<table class="table">
+					<% @users.each do |user| %>
+						<thead>
+							<tr>
+								<th><%= attachment_image_tag(user, :image, size: "50x50", fallback: "no_image.png") %></th>
+								<th><%= link_to user_path(user) do %>
+										<%= user.name %>
+										<% end %>
+								</th>
+							</tr>
+						</thead>
+					<% end %>
+				</table>
+
+				<% else %>
+					<h4>Post</h4>
+						<table>
+							<tbody>
+								<% @posts.each do |post| %>
+								<td>
+									<div class="topbox">
+										<%= link_to post_path(post) do %>
+										<%= image_tag post.image[0].to_s, size:"250x250" %>
+										<% end %>
+									</div>
+										<%= post.title %>
+								</td>
+								<% end %>
+							</tbody>
+						</table>
+				<% end %>
+
+		</div>
+	</div>
+</div>
