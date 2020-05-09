@@ -1,5 +1,4 @@
 <% visiter = notification.visiter %>
 
 <%= attachment_image_tag visiter, :image, size:"50x50", fallback:"no_image.png" %>
-
 <%= notification_form(notification) %><%= time_ago_in_words(notification.created_at) %><br>

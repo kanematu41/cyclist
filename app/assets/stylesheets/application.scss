@@ -32,3 +32,15 @@ bod {
   display: block;
   clear: both;
 }
+
+// 通知アイコンの設定---------------------------
+.notification-relative {
+  position: relative;
+
+  & .notification-absolute {
+  color: gold;
+  position:absolute;
+  top: 1rem;
+  padding-left: 1rem;
+  }
+}
