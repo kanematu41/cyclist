@@ -8,13 +8,13 @@ class CommentsController < ApplicationController
 		@comment.save
 		@comment_post = @comment.post #コメントに紐づく投稿
 		@comment_post.create_notification_comment!(current_user, @comment.id) #コメント通知
-		redirect_back(fallback_location: root_path)
+		render :index
 	end
 
 	def destroy
 		@comment = Comment.find(params[:post_id])
 		@comment.destroy
-		redirect_back(fallback_location: root_path)
+		render :index
 	end
 
 	private
