@@ -1,0 +1,21 @@
+<div class="container">
+<h4><%= @user.name %> さんとのチャット</h4>
+
+<div class="message" style="width: 400px;">
+  <% @chats.each do |chat| %>
+    <% if chat.user_id == current_user.id %>
+      <p style="text-align: right;"><%= chat.message %>
+      	<%= attachment_image_tag(chat.user, :image, size: "50x50", fallback: "no_image.png") %>
+      </p>
+    <% else %>
+      <p style="text-align: left;"><%= attachment_image_tag(chat.user, :image, size: "50x50", fallback: "no_image.png") %>
+      	<%= chat.message %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_with model: @chat, data: {remote: true} do |f| %>
+  <%= f.text_field :message %>
+  <%= f.hidden_field :room_id %>
+  <%= f.submit %>
+<% end %>
