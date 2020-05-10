@@ -69,3 +69,5 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem "carrierwave"
 gem 'bxslider-rails'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
