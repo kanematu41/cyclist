@@ -20,11 +20,13 @@
   height: 400px;
 }
 
-///user.show
-.my-box {
-  display: inline-flex;
-  margin: 5px;
-  padding: 10px;
-  background-color: #ffffff;
-}
+//post.new
 
+.post-title {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+.field-post {
+  padding-bottom: 50px;
+}

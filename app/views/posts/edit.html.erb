@@ -1,27 +1,35 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<h3>投稿編集</h3>
+			<div class="post-title">
+				<h3>投稿の変更</h3>
+			</div>
+		</div>
+	</div>
 
 			<%= form_for(@post) do |f| %>
+	<div class="post-detail-box">
+		<div class="row">
+			<div class="col-xs-8 col-xs-offset-2">
+				<div align="center">
 			<%= render 'home/error_messages', model: f.object %>
 			<div class="field-post">
-				<%= f.label :title %>
-				<%= f.text_field :title %>
+				<%= f.label :投稿タイトル %>
+				<%= f.text_field :title, class: "form-control" %>
 			</div>
 
 			<div class="field-post">
-				<%= f.label :image %>
-				<%= f.file_field :image, :multiple => true %>
+				<%= f.label :投稿内容 %>
+				<%= f.text_area :body, class: "form-control" %>
 			</div>
 
 			<div class="field-post">
-				<%= f.label :body %>
-				<%= f.text_area :body %>
+				<%= f.label :画像選択 %>(複数選択可)
+				<%= f.file_field :image, :multiple => true, class: "form-control" %>
 			</div>
 
 			<div class="action">
-				<%= f.submit %>
+				<%= f.submit "投稿内容の変更", class: "btn btn-lg btn-primary btn-block" %>
 			</div>
 
 			<% end %>
