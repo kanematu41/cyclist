@@ -8,35 +8,35 @@
 	</div>
 
 	<%= form_for(@post) do |f| %>
-	<div class="post-detail-box">
 		<div class="row">
 			<div class="col-xs-8 col-xs-offset-2">
-				<div align="center">
-					<%= render 'home/error_messages', model: f.object %>
+				<div class="post-detail-box">
+					<div align="center">
+						<%= render 'home/error_messages', model: f.object %>
 
-					<div class="field-post">
-						<%= f.label :投稿タイトル %>
-						<%= f.text_field :title, autofocus: true, placeholder: "タイトル名", class: "form-control" %>
+						<div class="field-post">
+							<%= f.label :投稿タイトル %>
+							<%= f.text_field :title, autofocus: true, placeholder: "タイトル名", class: "form-control" %>
+						</div>
+
+						<div class="field-post">
+							<%= f.label :投稿内容 %>
+							<%= f.text_area :body, placeholder: "どんな内容", class: "form-control" %>
+						</div>
+
+						<div class="field-post">
+							<%= f.label :画像選択 %>(複数選択可)
+							<%= f.file_field :image, :multiple => true, class: "form-control" %>
+						</div>
+
+						<div class="action">
+							<%= f.submit "投稿する", class: "btn btn-lg btn-primary btn-block" %>
+						</div>
+
 					</div>
-
-					<div class="field-post">
-						<%= f.label :投稿内容 %>
-						<%= f.text_area :body, placeholder: "どんな内容", class: "form-control" %>
-					</div>
-
-					<div class="field-post">
-						<%= f.label :画像選択 %>(複数選択可)
-						<%= f.file_field :image, :multiple => true, class: "form-control" %>
-					</div>
-
-					<div class="action">
-						<%= f.submit "投稿する", class: "btn btn-lg btn-primary btn-block" %>
-					</div>
-
 				</div>
 			</div>
 		</div>
-	</div>
 	<% end %>
 
 </div>

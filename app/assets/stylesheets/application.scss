@@ -119,11 +119,9 @@ bod {
 }
 
 //error_messe
-.alert-warning {
-  background-color: white;
-  border: 0px none;
-ul{
-  list-style: none;
-  color: red;
+.error-massege {
+  background-color: #f8d7da;
+  ul {
+    list-style: none;
   }
 }

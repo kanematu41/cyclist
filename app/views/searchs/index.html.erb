@@ -20,21 +20,20 @@
 
 				<% else %>
 					<h4>Post</h4>
-						<table>
-							<tbody>
-								<% @posts.each do |post| %>
-								<td>
-									<div class="topbox">
-										<%= link_to post_path(post) do %>
-										<%= image_tag post.image[0].to_s, size:"250x250" %>
-										<% end %>
-									</div>
-										<%= post.title %>
-								</td>
-								<% end %>
-							</tbody>
-						</table>
-				<% end %>
+					<hr>
+					<div class="recipes_index">
+					<% @posts.each do |post| %>
+						<div class="my-box-search">
+							<%= link_to post_path(post) do %>
+							<%= image_tag post.image[0].to_s, size:"250x250" %><br>
+							<% end %>
+							<div class="search-title">
+							<%= post.title %><!-- css乱れる -->
+							</div>
+						</div>
+					<% end %>
+					</div>
+					<% end %>
 
 		</div>
 	</div>

@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
 	validates :title, presence: true
 	validates :body, presence: true
-	validates :image, presence:true
+	validates :image, presence: { message: "を選択してください"}
 
 	def liked_by?(user)
 		likes.where(user_id: user.id).exists?
