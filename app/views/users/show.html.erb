@@ -54,7 +54,7 @@
 		<div class="col">
 			<hr>
 					<% @posts.each do |post| %>
-						<div class="my-box">
+						<div class="my-box-search">
 							<%= link_to post_path(post) do %>
 							<%= image_tag post.image[0].to_s, size:"250x250" %>
 							<% end %>
