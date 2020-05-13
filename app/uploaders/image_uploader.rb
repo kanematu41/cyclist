@@ -49,9 +49,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-  def filename
-    "#{secure_token}.#{file.extension}" if original_filename.present?
-  end
+  #同じ画像が表示されたためコメント
+  # def filename
+  #   "#{secure_token}.#{file.extension}" if original_filename.present?
+  # end
 
   protected
 
@@ -66,3 +67,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 end
+@posts = Post.where(status: "公開")
