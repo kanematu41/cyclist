@@ -72,6 +72,7 @@ gem 'bxslider-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'dotenv-rails'
+gem 'fog-aws'
 
 
 group :production do
