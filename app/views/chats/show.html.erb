@@ -1,21 +1,28 @@
 <div class="container">
-<h4><%= @user.name %> さんとのチャット</h4>
+  <div class="post-title">
+    <h4><label>ChatRoom</label></h4>
+  </div>
 
-<div class="message" style="width: 400px;">
-  <% @chats.each do |chat| %>
-    <% if chat.user_id == current_user.id %>
-      <p style="text-align: right;"><%= chat.message %>
-      	<%= attachment_image_tag(chat.user, :image, size: "50x50", fallback: "no_image.png") %>
-      </p>
-    <% else %>
-      <p style="text-align: left;"><%= attachment_image_tag(chat.user, :image, size: "50x50", fallback: "no_image.png") %>
-      	<%= chat.message %></p>
-    <% end %>
-  <% end %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+<!-- <div class="message" style="width: 400px;"> -->
+      <% @chats.each do |chat| %>
+        <% if chat.user_id == current_user.id %>
+          <p style="text-align: right;"><%= chat.message %>
+            <%= attachment_image_tag(chat.user, :image, size: "50x50", fallback: "no_image.png") %>
+          </p>
+        <% else %>
+          <p style="text-align: left;"><%= attachment_image_tag(chat.user, :image, size: "50x50", fallback: "no_image.png") %>
+            <%= chat.message %></p>
+        <% end %>
+      <% end %>
+    <!-- </div> -->
+      <%= form_for(@chat) do |f| %>
+        <%= f.text_field :message, class: "form-control" %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit "送信" %>
+      <% end %>
+
+    </div>
+  </div>
 </div>
-
-<%= form_with model: @chat, data: {remote: true} do |f| %>
-  <%= f.text_field :message %>
-  <%= f.hidden_field :room_id %>
-  <%= f.submit %>
-<% end %>
