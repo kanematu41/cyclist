@@ -19,6 +19,21 @@ class UsersController < ApplicationController
   	end
   end
 
+  def follows
+    @user = User.find(params[:id])
+    @users = @user.following_user
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.follower_user
+  end
+
+  def timeline
+    @user = User.find(params[:id])
+    @posts = Post.page(params[:page]).reverse_order.where(user_id: @user.following_user)
+  end
+
   private
   def user_params
   	params.require(:user).permit(:name, :introduction, :image)

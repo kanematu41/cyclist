@@ -13,6 +13,13 @@
 										<%= user.name %>
 										<% end %>
 								</th>
+
+							<% if user.id != current_user.id %>
+								<th id="relationship<%= user.id %>">
+									<%= render partial: 'relationships/relationship', locals: { user: user } %>
+								</th>
+						  <% end %>
+
 							</tr>
 						</thead>
 					<% end %>
@@ -21,18 +28,16 @@
 				<% else %>
 					<h4>Post</h4>
 					<hr>
-					<div class="recipes_index">
 					<% @posts.each do |post| %>
 						<div class="my-box-search">
 							<%= link_to post_path(post) do %>
 							<%= image_tag post.image[0].to_s, size:"250x250" %><br>
 							<% end %>
 							<div class="search-title">
-							<%= post.title %><!-- css乱れる -->
+							<%= post.title %>
 							</div>
 						</div>
 					<% end %>
-					</div>
 					<% end %>
 
 		</div>

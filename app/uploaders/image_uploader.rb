@@ -13,8 +13,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Choose what kind of storage to use for this uploader:
-  # storage :file
-  storage :fog
+  #テスト環境
+  storage :file
+  # 本番環境
+  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -49,7 +51,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
-  #同じ画像が表示されたためコメント
+  #同じ画像が表示されたためコメントアウト
   # def filename
   #   "#{secure_token}.#{file.extension}" if original_filename.present?
   # end
@@ -67,4 +69,3 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 end
-@posts = Post.where(status: "公開")

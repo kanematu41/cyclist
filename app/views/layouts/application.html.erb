@@ -23,8 +23,9 @@
 
               <% if user_signed_in? %><!-- ログインしているか -->
                 <li><%= render 'layouts/search' %></li>
-                <li><%= link_to " Home", user_path(current_user) %></li>
-                <li><%= link_to " 投稿", new_post_path %></li>
+                <li><%= link_to " Home", user_path(current_user), class: "glyphicon glyphicon-user"  %></li>
+                <li><%= link_to " タイムライン", timeline_user_path(current_user), class: "glyphicon glyphicon-list-alt"%></li>
+                <li><%= link_to " 投稿", new_post_path, class: "glyphicon glyphicon-pencil" %></li>
 
                 <!-- 通知 -->
                 <li class="notification-relative">

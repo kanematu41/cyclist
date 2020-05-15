@@ -1,0 +1,21 @@
+<table class="table">
+	<tr>
+		<th>名前</th>
+		<th><%= user.name %></th>
+	</tr>
+
+	<tr>
+		<th>自己紹介</th>
+		<th><%= user.introduction %></th>
+	</tr>
+
+	<tr>
+		<th>フォロー</th>
+		<th><%= link_to user.follower.count, follows_user_path(user) %></th>
+	</tr>
+
+	<tr>
+		<th>フォロワー</th>
+		<th><%= link_to user.followed.count, followers_user_path(user) %></th>
+	</tr>
+</table>
