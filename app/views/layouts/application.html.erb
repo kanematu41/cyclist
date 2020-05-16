@@ -11,20 +11,30 @@
   </head>
 
   <body>
+    <!-- ヘッダー -->
     <header>
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
+
+            <!-- レスポンシブハンバーガーメニュー -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
             <h3 class="text-style"><label><%= link_to "cyclist", posts_path %></label></h3>
           </div>
 
           <div class="sidemenu">
-            <ul class="nav navbar-nav navbar-right">
+            <ul id="navbar" ul class="nav navbar-nav navbar-right">
 
               <% if user_signed_in? %><!-- ログインしているか -->
                 <li><%= render 'layouts/search' %></li>
-                <li><%= link_to " Home", user_path(current_user), class: "glyphicon glyphicon-user"  %></li>
-                <li><%= link_to " タイムライン", timeline_user_path(current_user), class: "glyphicon glyphicon-list-alt"%></li>
+                <li><%= link_to " Home", user_path(current_user), class: "glyphicon glyphicon-user" %></li>
+                <li><%= link_to " タイムライン", timeline_user_path(current_user), class: "glyphicon glyphicon-list-alt" %></li>
                 <li><%= link_to " 投稿", new_post_path, class: "glyphicon glyphicon-pencil" %></li>
 
                 <!-- 通知 -->
@@ -48,7 +58,15 @@
         </div>
       </nav>
     </header>
+    <!-- ヘッダー -->
     <%= render 'layouts/flash_messages' %>
+    <div class="wrapper">
     <%= yield %>
+    </div>
+    <!-- フッター -->
+    <footer>
+      <h3 style="color: black;">cyclist</h3>
+    </footer>
+    <!-- フッター -->
   </body>
 </html>

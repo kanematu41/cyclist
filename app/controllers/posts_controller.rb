@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   def index
   	@posts = Post.page(params[:page]).reverse_order
+    # @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id)) #いいねランキング
   end
 
   def show
