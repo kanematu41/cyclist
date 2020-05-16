@@ -39,7 +39,9 @@ class Post < ApplicationRecord
 		if notification.visiter_id == notification.visited_id
 			notification.checked = true
 		end
-		notification.save if notification.valid? #空でなければ
+		if notification.valid? && Post.find(id).user.id != current_user.id
+			notification.save
+		end
 	end
 
 	# いいね通知
@@ -59,7 +61,9 @@ class Post < ApplicationRecord
 			if notification.visiter_id == notification.visited_id
 				notification.checked = true
 			end
-			notification.save if notification.valid? #空でなければ
+			if notification.valid? && Post.find(id).user.id != current_user.id
+				notification.save
+			end
 		end
 	end
 
