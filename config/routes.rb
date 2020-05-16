@@ -16,8 +16,13 @@ Rails.application.routes.draw do
   	resource :likes, only:[:create, :destroy]
   end
 
+  resources :searchs, only:[:index] do
+    collection do
+      get :tag
+    end
+  end
+
   resources :notifications, only:[:index, :destroy]
-  resources :searchs, only:[:index]
   resources :chats, only: [:show, :create]
 
   post 'follow/:id' => 'relationships#create', as: 'follow'

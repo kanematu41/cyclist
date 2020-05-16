@@ -9,4 +9,10 @@ class SearchsController < ApplicationController
       @posts = Post.search(params[:search], @user_or_post)
     end
   end
+
+  def tag
+    if params[:tag_name]
+      @posts = Post.page(params[:page]).reverse_order.tagged_with("#{params[:tag_name]}")
+    end
+  end
 end

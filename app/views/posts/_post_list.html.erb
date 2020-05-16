@@ -4,9 +4,10 @@
 		<div class="post-container">
 			<div class="post-header">
 				<%= attachment_image_tag(post.user, :image, size:"50x50", fallback:"no_image.png") %>
-				<p><%= link_to user_path(post.user) do %>
+				<p class="link-text">
+					<%= link_to user_path(post.user) do %>
 					 <%= post.user.name %>
-					 <% end %>
+					<% end %>
 				</p>
 				<p><%= time_ago_in_words(post.created_at) %>前</p>
 			</div>
@@ -21,7 +22,14 @@
 				<%= image_tag post.image[0].to_s, size:"250x250" %><!-- 画像1枚表示 -->
 				<% end %>
 			<div class="search-title">
-				タイトル: <%= post.title %>
+				タイトル: <%= post.title %><br>
+			<div class="tag-min">
+				タグ:<% post.tag_list.each do |tag| %>
+				  	<p class="label">
+				  		<%= link_to tag, tag_searchs_path(tag_name: tag), class: "badge" %>
+				  	</p>
+				<% end %>
+			</div>
 			</div>
 		</div>
 	</div>
