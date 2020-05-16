@@ -41,8 +41,14 @@
 			<% @posts.each do |post| %>
 				<div class="my-box-search">
 					<%= link_to post_path(post) do %>
-					<%= image_tag post.image[0].to_s, size:"250x250" %>
+					<%= image_tag post.image[0].to_s, size:"250x250" %><br>
 					<% end %>
+					<div class="search-title">
+						<i class="far fa-thumbs-up">
+							<%= post.likes.count %></i>
+						<i class="far fa-comment">
+							<%= post.comments.count %></i>
+					</div>
 				</div>
 			<% end %>
 		</div>
