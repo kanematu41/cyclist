@@ -5,7 +5,8 @@
 
 //post.show
 .postbox {
-  padding: 50px;
+  border: 1px solid #000000;
+  padding: 47px;
   margin-bottom: 20px;
   border-radius: 15px;
   background-color: #F5F5F5;
@@ -42,4 +43,22 @@
 .post-header {
   display: flex;
   justify-content: space-between;
+}
+
+.post-tag{
+  font-size: 1.3em;
+  & a{
+      color: white;
+      font-size: 1em;
+      background-color: #32CD32;
+  }
+}
+
+.tag-min{
+  font-size: 1em;
+  & a{
+      color: white;
+      font-size: 1em;
+      background-color: #32CD32;
+  }
 }

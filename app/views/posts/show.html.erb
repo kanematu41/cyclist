@@ -25,10 +25,17 @@
 			</div>
 			<hr>
 
-<!-- いいね機能 -->
-			<div id="like<%= @post.id %>">
-				<%= render partial: 'likes/like', locals: { post: @post } %>
+			<div class="post-tag">
+				<% @post.tag_list.each do |tag| %>
+				  <p class="label pull-right">
+				  	<%= link_to tag, tag_searchs_path(tag_name: tag), class: "badge" %>
+				  </p>
+				<% end %>
 			</div>
+<!-- いいね機能 -->
+				<div id="like<%= @post.id %>">
+					<%= render partial: 'likes/like', locals: { post: @post } %>
+				</div>
 			<hr>
 
 			<label>内容: </label>

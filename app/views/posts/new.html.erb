@@ -29,6 +29,11 @@
 							<%= f.file_field :image, :multiple => true, class: "form-control" %>
 						</div>
 
+						<div class="field-post">
+							<%= f.label :タグづけ %>
+							<%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control" %>
+						</div>
+
 						<div class="action">
 							<%= f.submit "投稿する", class: "btn btn-lg btn-primary btn-block" %>
 						</div>

@@ -47,6 +47,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-  	params.require(:post).permit(:title, :body, {image: []}) #複数画像
+  	params.require(:post).permit(:title, :body, :tag_list, {image: []})
   end
 end

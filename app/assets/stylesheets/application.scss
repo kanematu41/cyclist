@@ -69,6 +69,12 @@ footer{
       color: black;
   }
 }
+.link-text {
+  font-size: 1em;
+  & a{
+      color: black;
+  }
+}
 
 //home
 .top-box {

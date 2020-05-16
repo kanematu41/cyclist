@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
 	mount_uploaders :image, ImageUploader #carrierwave関連
 	serialize :image
+	acts_as_taggable # acts_as_taggable_on
 
 	belongs_to :user
 	has_many 	 :comments, dependent: :destroy
@@ -39,6 +40,7 @@ class Post < ApplicationRecord
 		if notification.visiter_id == notification.visited_id
 			notification.checked = true
 		end
+		# 自分が投稿＝ログインユーザー 通知しない
 		if notification.valid? && Post.find(id).user.id != current_user.id
 			notification.save
 		end
@@ -61,6 +63,7 @@ class Post < ApplicationRecord
 			if notification.visiter_id == notification.visited_id
 				notification.checked = true
 			end
+			# 投稿ユーザー＝ログインユーザー 通知しない
 			if notification.valid? && Post.find(id).user.id != current_user.id
 				notification.save
 			end
