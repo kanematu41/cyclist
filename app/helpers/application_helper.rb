@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-# login時エラーメッセージ
+# メッセージ
   def bootstrap_class_for(flash_type)
     case flash_type
     when 'success'
