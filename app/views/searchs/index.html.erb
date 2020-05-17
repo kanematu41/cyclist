@@ -1,32 +1,20 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
+			<div class="search-form">
+				<%= render 'layouts/search' %>
+			</div>
 
 			<% if @user_or_post == "1" %>
-				<h4>User</h4>
-				<table class="table">
-					<% @users.each do |user| %>
-						<thead>
-							<tr>
-								<th><%= attachment_image_tag(user, :image, size: "50x50", fallback: "no_image.png") %></th>
-								<th><%= link_to user_path(user) do %>
-										<%= user.name %>
-										<% end %>
-								</th>
-
-							<% if user.id != current_user.id %>
-								<th id="relationship<%= user.id %>">
-									<%= render partial: 'relationships/relationship', locals: { user: user } %>
-								</th>
-						  <% end %>
-
-							</tr>
-						</thead>
-					<% end %>
-				</table>
+				<h4>ユーザー検索</h4>
+				<div class="row">
+					<div class="col-xs-6 col-xs-offset-3">
+  					<%= render 'relationships/user_list', users: @users %>
+					</div>
+				</div>
 
 				<% else %>
-					<h4>Post</h4>
+					<h4>タイトル検索</h4>
 					<hr>
 					<% @posts.each do |post| %>
 						<div class="my-box-search">

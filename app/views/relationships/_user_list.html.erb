@@ -1,8 +1,9 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th>image</th>
-			<th>name</th>
+			<th></th>
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 
@@ -12,12 +13,11 @@
 			<td><%= attachment_image_tag(user, :image, size:"50x50", fallback:"no_image.png") %></td>
 			<td><%= link_to user.name, user_path(user) %></td>
 
-		<% if user.id != current_user.id %>
+		<% if user != current_user %>
 			<td id="relationship<%= user.id %>">
 				<%= render partial: 'relationships/relationship', locals: { user: user } %>
 			</td>
 	  <% end %>
-
 		</tr>
 		<% end %>
 	</tbody>

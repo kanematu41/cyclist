@@ -11,14 +11,20 @@
   border-radius: 15px;
   background-color: #F5F5F5;
 }
-
 .title {
   margin-left: 120px;
 }
-
 .post-image {
   width: 460px;
   height: 400px;
+}
+.post-tag{
+  font-size: 1.3em;
+  & a{
+      color: white;
+      font-size: 1em;
+      background-color: #32CD32;
+  }
 }
 
 //post.new
@@ -29,6 +35,9 @@
 }
 .field-post {
   padding-bottom: 50px;
+}
+.action-post {
+  margin-bottom: 50px;
 }
 .my-box-search {
   margin: 20px;
@@ -44,16 +53,6 @@
   display: flex;
   justify-content: space-between;
 }
-
-.post-tag{
-  font-size: 1.3em;
-  & a{
-      color: white;
-      font-size: 1em;
-      background-color: #32CD32;
-  }
-}
-
 .tag-min{
   font-size: 1em;
   & a{

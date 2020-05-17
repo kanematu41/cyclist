@@ -5,49 +5,59 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-xs-6 col-xs--offset-3">
-			<div class="postbox">
-				<div class="post-first">
-					<%= attachment_image_tag(@post.user, :image, size:"50x50", fallback: "no_image.png") %>
-					<%= link_to user_path(@post.user) do %>
-					<%= @post.user.name %>
+	<div class="postbox">
+		<div class="row">
+			<div class="col-xs-5">
+				<div class="bxslider"><!-- js画像スライダー -->
+					<% @post.image.each do |image| %>
+						<%= image_tag(image.url, class:"post-image") %>
 					<% end %>
-					<label class="title">
-						<%= @post.title %>
-					</label>
-					 <p class="pull-right"><%= @post.created_at.strftime('%Y/%m/%d') %></p>
 				</div>
-			<div class="bxslider"><!-- js画像スライダー -->
-				<% @post.image.each do |image| %>
-					<%= image_tag(image.url, class:"post-image") %>
-				<% end %>
 			</div>
-			<hr>
 
-			<div class="post-tag">
-				<% @post.tag_list.each do |tag| %>
-				  <p class="label pull-right">
-				  	<%= link_to tag, tag_searchs_path(tag_name: tag), class: "badge" %>
-				  </p>
-				<% end %>
-			</div>
-<!-- いいね機能 -->
+			<div class="col-xs-6 col-xs-offset-1">
+				<table class="table">
+					<%= attachment_image_tag(@post.user, :image, size:"50x50", fallback: "no_image.png") %>
+					<tr>
+						<label class="pull-right"><%= @post.created_at.strftime('%Y/%m/%d') %></label>
+					</tr>
+					<tr>
+						<th>ユーザー名</th>
+						<th><%= link_to user_path(@post.user) do %>
+								<%= @post.user.name %>
+								<% end %>
+						</th>
+					</tr>
+					<tr>
+						<th>タイトル</th>
+						<th><%= @post.title %></th>
+					</tr>
+					<tr>
+						<th>タグ</th>
+						<th class="tag-min"><% @post.tag_list.each do |tag| %>
+				  			<%= link_to tag, tag_searchs_path(tag_name: tag), class: "badge" %>
+								<% end %>
+						</th>
+					</tr>
+					<tr>
+						<th>内容</th>
+						<th><%= @post.body %></th>
+					</tr>
+				</table>
+				<hr>
+				<!-- いいね機能 -->
 				<div id="like<%= @post.id %>">
 					<%= render partial: 'likes/like', locals: { post: @post } %>
 				</div>
-			<hr>
-
-			<label>内容: </label>
-			<%= @post.body %><br>
-			<% if @post.user_id == current_user.id %>
-			<%= link_to "編集", edit_post_path(@post) %>
-			<%= link_to "削除", post_path(@post), method: :delete %>
-			<% end %>
+				<div class="post-select pull-right">
+					<% if @post.user_id == current_user.id %>
+						<%= link_to "編集", edit_post_path(@post) %>
+						<%= link_to "削除", post_path(@post), method: :delete %>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
-
 <!-- コメント非同期 -->
 	<div class="row">
 		<div class="col">
@@ -59,7 +69,9 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-7 col-xs-offset-5">
+			<div class="action-post">
 			 <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+			</div>
 		</div>
 	</div>
 </div>

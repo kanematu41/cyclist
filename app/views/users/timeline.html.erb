@@ -2,10 +2,11 @@
 	<div class="row">
 		<div class="col">
 			<h3>タイムライン</h3>
+			<hr>
 			<% if @posts.exists? %>
 				<%= render 'posts/post_list', posts: @posts %>
 			<% else %>
-				<p>だれかフォローしよう</p>
+				<p>気になる人をフォローしよう</p>
 			<% end %>
 		</div>
 	</div>
