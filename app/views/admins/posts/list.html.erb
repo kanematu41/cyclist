@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<% @posts.each do |post| %>
+			<div class="my-box-search">
+				<div class="postbox">
+					<div class="post-container">
+						<div class="post-header">
+							<%= attachment_image_tag(post.user, :image, size:"50x50", fallback:"no_image.png") %>
+							<p class="link-text">
+								 <%= post.user.name %>
+							</p>
+							<p><%= time_ago_in_words(post.created_at) %>前</p>
+						</div>
+						<div>
+							<i class="far fa-thumbs-up pull-right">
+								<%= post.likes.count %></i>
+							<i class="far fa-comment pull-right">
+								<%= post.comments.count %></i>
+						</div>
+
+							<%= link_to admins_post_path(post) do %>
+							<%= image_tag post.image[0].to_s, size:"250x250" %><!-- 画像1枚表示 -->
+							<% end %>
+						<div class="search-title">
+							タイトル: <%= post.title %><br>
+						<div class="tag-min">
+							タグ:<% post.tag_list.each do |tag| %>
+							  		<p class="badge" style="background-color: #32CD32;"><%= tag %></p>
+									<% end %>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% end %>
+			<%= paginate @posts %>
+		</div>
+	</div>
+</div>

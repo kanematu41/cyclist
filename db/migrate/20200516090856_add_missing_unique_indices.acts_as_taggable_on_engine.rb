@@ -8,10 +8,12 @@ AddMissingUniqueIndices.class_eval do
   def self.up
     add_index ActsAsTaggableOn.tags_table, :name, unique: true
 
+# 本番環境のバグのため追加
     if index_exists?(ActsAsTaggableOn.taggings_table, :tag_id)
       remove_foreign_key :taggings, :tags
       remove_index ActsAsTaggableOn.taggings_table, :tag_id
     end
+
     remove_index ActsAsTaggableOn.taggings_table, :tag_id if index_exists?(ActsAsTaggableOn.taggings_table, :tag_id)
     remove_index ActsAsTaggableOn.taggings_table, name: 'taggings_taggable_context_idx'
     add_index ActsAsTaggableOn.taggings_table,

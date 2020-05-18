@@ -8,7 +8,7 @@ module ApplicationHelper
     when 'error'
       'danger'
     when 'alert'
-      'warning'
+      'danger'
     when 'notice'
       'info'
     else
