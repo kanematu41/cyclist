@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :baria_post, only:[:edit]
 
   def new
   	@post = Post.new
@@ -16,8 +17,8 @@ class PostsController < ApplicationController
   end
 
   def index
-  	@posts = Post.page(params[:page]).reverse_order
-    # @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id)) #いいねランキング
+  	# @posts = Post.page(params[:page]).reverse_order
+    @posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(6).pluck(:post_id)) #いいねランキング
   end
 
   def show
@@ -42,11 +43,18 @@ class PostsController < ApplicationController
   def destroy
   	post = Post.find(params[:id])
   	post.destroy
-  	redirect_to posts_path
+  	redirect_to user_path(current_user), notice: "削除されました"
   end
 
   private
   def post_params
   	params.require(:post).permit(:title, :body, :tag_list, {image: []})
+  end
+
+  def baria_post
+    @post = Post.find(params[:id])
+    if @post.user != current_user
+      redirect_to root_path
+    end
   end
 end

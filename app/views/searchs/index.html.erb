@@ -13,21 +13,27 @@
 					</div>
 				</div>
 
-				<% else %>
-					<h4>タイトル検索</h4>
-					<hr>
-					<% @posts.each do |post| %>
-						<div class="my-box-search">
-							<%= link_to post_path(post) do %>
-							<%= image_tag post.image[0].to_s, size:"250x250" %><br>
-							<% end %>
-							<div class="search-title">
+			<% elsif @user_or_post == "2" %>
+				<h4>タイトル検索</h4>
+				<hr>
+				<% @posts.each do |post| %>
+					<div class="my-box-search">
+						<%= link_to post_path(post) do %>
+						<%= image_tag post.image[0].to_s, size:"250x250" %><br>
+						<% end %>
+						<div class="search-title">
 							<%= post.title %>
-							</div>
 						</div>
-					<% end %>
-					<% end %>
+					</div>
+				<% end %>
+				<%= paginate @posts %>
 
+			<% else %>
+				<h4>新着順</h4>
+				<hr>
+				<%= render 'posts/post_list', posts: @posts %>
+				<%= paginate @posts %>
+			<% end %>
 		</div>
 	</div>
 </div>

@@ -6,10 +6,11 @@
 				<%= attachment_image_tag(comment.user, :image, size:"50x50", fallback:"no_image.png") %>
 				<% end %>
 			</td>
-			<td><%= comment.comment %></td>
-			<% if comment.user_id == current_user.id %>
-			<td><%= link_to "削除", post_comments_path(comment), method: :delete, class:"pull-right", remote: true %></td>
-			<% end %>
+			<td><%= comment.comment %>
+					<% if comment.user_id == current_user.id %>
+						<%= link_to "削除", post_comments_path(comment), method: :delete, class:"pull-right", remote: true %>
+					<% end %>
+			</td>
 		</tr>
 	<% end %>
 </table>

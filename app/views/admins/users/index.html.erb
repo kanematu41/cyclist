@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			<h3>ユーザー (<%= @users.count %>人)</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th></th>
+						<th>名前</th>
+						<th>投稿数</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+						<td><%= user.id %></td>
+						<td><%= attachment_image_tag(user, :image, size:"50x50", fallback:"no_image.png") %></td>
+						<td><%= link_to user.name, admins_user_path(user) %></td>
+						<td><%= link_to user.posts.count, list_admins_post_path(user) %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<%= paginate @users %>
+</div>
+

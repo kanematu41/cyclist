@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h3>投稿詳細</h3>
+		</div>
+	</div>
+
+	<div class="postbox">
+		<div class="row">
+			<div class="col-xs-5">
+				<div class="bxslider"><!-- js画像スライダー -->
+					<% @post.image.each do |image| %>
+						<%= image_tag(image.url, class:"post-image") %>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="col-xs-6 col-xs-offset-1">
+				<table class="table">
+					<%= attachment_image_tag(@post.user, :image, size:"50x50", fallback: "no_image.png") %>
+					<tr>
+						<label class="pull-right"><%= @post.created_at.strftime('%Y/%m/%d') %></label>
+					</tr>
+					<tr>
+						<th>ユーザー名</th>
+						<th><%= @post.user.name %></th>
+					</tr>
+					<tr>
+						<th>タイトル</th>
+						<th><%= @post.title %></th>
+					</tr>
+					<tr>
+						<th>タグ</th>
+						<th class="tag-min">
+							<% @post.tag_list.each do |tag| %>
+							<p class="badge" style="background-color: #32CD32;"><%= tag %></p>
+								<% end %>
+						</th>
+					</tr>
+					<tr>
+						<th>内容</th>
+						<th><%= @post.body %></th>
+					</tr>
+				</table>
+				<hr>
+
+				<div class="post-select pull-right">
+						<%= link_to "削除", admins_post_path(@post), method: :delete, data:{confirm: "削除しますか?"} %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
