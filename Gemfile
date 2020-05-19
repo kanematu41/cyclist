@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Use sqlite3 as the database for Active Record
 
 # 本番環境コメントアウト
-gem 'sqlite3'
+# gem 'sqlite3'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -64,21 +64,22 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'acts-as-taggable-on', '~> 6.0'
-gem 'bxslider-rails'
-gem 'bootstrap-sass'
-gem "carrierwave"
 gem 'devise'
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+gem 'kaminari','~> 1.1.1'
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+gem "carrierwave"
+gem 'bxslider-rails'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'dotenv-rails'
 gem 'fog-aws'
-gem 'jquery-rails'
-gem 'kaminari','~> 1.1.1'
+gem 'acts-as-taggable-on', '~> 6.0'
 gem 'paranoia'
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
 
-# group :production do
+
+#group :production do
   gem 'mysql2'
-# end
+#end
