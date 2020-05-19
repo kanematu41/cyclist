@@ -8,7 +8,9 @@
 						<th>ID</th>
 						<th></th>
 						<th>名前</th>
+						<th>登録日時</th>
 						<th>投稿数</th>
+						<th>状態</th>
 					</tr>
 				</thead>
 
@@ -18,7 +20,14 @@
 						<td><%= user.id %></td>
 						<td><%= attachment_image_tag(user, :image, size:"50x50", fallback:"no_image.png") %></td>
 						<td><%= link_to user.name, admins_user_path(user) %></td>
+						<td><%= user.created_at.strftime('%Y年%m月%d日%H時%M分') %></td>
 						<td><%= link_to user.posts.count, list_admins_post_path(user) %></td>
+						<!-- 論理削除 -->
+						<% if user.paranoia_destroyed? %>
+						<td><%= link_to "復元する", admins_user_path(user), method: :patch, class: "btn btn-success" %></td>
+						<% else %>
+						<td><%= link_to "退会させる", admins_user_path(user), method: :delete, data: {confirm: "退会させますか?"}, class: "btn btn-danger" %></td>
+						<% end %>
 					</tr>
 					<% end %>
 				</tbody>

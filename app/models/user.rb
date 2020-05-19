@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  attachment :image #refileでの画像アップ用
+  attachment :image # refile画像
+  acts_as_paranoid # 論理削除
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
