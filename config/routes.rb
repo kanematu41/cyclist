@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
   namespace :admins do
-    resources :users, only:[:index, :show]
+    resources :users, only:[:index, :show, :update, :destroy]
     resources :posts, only:[:show, :destroy] do
       member do
         get :list

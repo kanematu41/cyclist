@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 	mount_uploaders :image, ImageUploader #carrierwave関連
 	serialize :image
-	acts_as_taggable # acts_as_taggable_on
+	acts_as_taggable # タグ機能
 
 	belongs_to :user
 	has_many 	 :comments, dependent: :destroy
