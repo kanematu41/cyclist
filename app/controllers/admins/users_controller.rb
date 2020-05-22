@@ -12,12 +12,12 @@ class Admins::UsersController < ApplicationController
   def update
   	user = User.only_deleted.find(params[:id])
   	user.restore
-  	redirect_to admins_users_path
+  	redirect_to admins_users_path, notice: "元に戻しました。"
   end
 
   def destroy
   	user = User.find(params[:id])
   	user.destroy
-  	redirect_to admins_users_path
+  	redirect_to admins_users_path, notice: "無効にしました。"
   end
 end

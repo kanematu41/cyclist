@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Use sqlite3 as the database for Active Record
 
 # 本番環境コメントアウト
-#gem 'sqlite3'
+# gem 'sqlite3'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -42,6 +42,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # RSpec追加
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 group :development do
@@ -56,9 +60,10 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  gem 'webdrivers'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'selenium-webdriver'
+  # gem 'chromedriver-helper'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -76,9 +81,11 @@ gem 'fog-aws'
 gem 'jquery-rails'
 gem 'kaminari','~> 1.1.1'
 gem 'paranoia'
+gem 'pry-byebug'
+gem 'pry-rails'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
-#group :production do
+# group :production do
   gem 'mysql2'
-#end
+# end
