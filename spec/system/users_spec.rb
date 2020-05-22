@@ -12,8 +12,6 @@ describe 'ユーザー認証のテスト' do
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
         click_button '登録する'
-
-        # expect(page).to have_content 'successfully'
       end
       it '新規登録に失敗する' do
         fill_in 'user[name]', with: ''
@@ -21,8 +19,6 @@ describe 'ユーザー認証のテスト' do
         fill_in 'user[password]', with: ''
         fill_in 'user[password_confirmation]', with: ''
         click_button '登録する'
-
-        # expect(page).to have_content 'error'
       end
     end
   end
@@ -37,10 +33,7 @@ describe 'ユーザー認証のテスト' do
         fill_in 'user[email]', with: Faker::Internet.email
         fill_in 'user[password]', with: test_user.password
         click_button 'ログイン'
-
-        # expect(page).to have_content 'successfully'
       end
-
       it 'ログインに失敗する' do
         fill_in 'user[email]', with: ''
         fill_in 'user[password]', with: ''
