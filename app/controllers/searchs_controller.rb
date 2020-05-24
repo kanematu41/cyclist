@@ -4,9 +4,9 @@ class SearchsController < ApplicationController
   def index
     @user_or_post = params[:option]
     if @user_or_post == "1"
-      @users = User.search(params[:search], @user_or_post)
+      @users = User.page(params[:page]).per(15).search(params[:search], @user_or_post)
     elsif @user_or_post == "2"
-      @posts = Post.page(params[:page]).reverse_order.search(params[:search], @user_or_post)
+      @posts = Post.page(params[:page]).reverse_order.per(8).search(params[:search], @user_or_post)
     else
       @posts = Post.page(params[:page]).reverse_order
     end

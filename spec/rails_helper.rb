@@ -5,6 +5,10 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+
+#spec,support配下のrbファイルの読み込み(rspecで追加)
+# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -62,4 +66,11 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods #追加
+
+# rspecのファイルの削除(carrierwave.rbで指定してるimageの削除)
+  config.after(:all) do
+    if Rails.env.test?
+      FileUtils.rm_rf(Rails.root + "public/uploads_test")
+     end
+  end
 end
