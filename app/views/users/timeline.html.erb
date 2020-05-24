@@ -5,6 +5,7 @@
 			<hr>
 			<% if @posts.exists? %>
 				<%= render 'posts/post_list', posts: @posts %>
+				<%= paginate @posts %>
 			<% else %>
 				<p>気になる人をフォローしよう</p>
 			<% end %>

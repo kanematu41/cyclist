@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-  	@posts = @user.posts
+  	@posts = @user.posts.page(params[:page]).reverse_order.per(8)
   end
 
   def edit
@@ -22,12 +22,12 @@ class UsersController < ApplicationController
 
   def follows
     @user = User.find(params[:id])
-    @users = @user.following_user
+    @users = @user.following_user.page(params[:page]).per(15)
   end
 
   def followers
     @user = User.find(params[:id])
-    @users = @user.follower_user
+    @users = @user.follower_user.page(params[:page]).per(15)
   end
 
   def timeline
