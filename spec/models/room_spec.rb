@@ -5,7 +5,7 @@ RSpec.describe Room, type: :model do
 		@room = create(:room)
 	end
 
-  it "部屋の作成" do
+  it '部屋の作成' do
     expect(@room).to be_valid
   end
 end

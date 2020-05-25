@@ -1,71 +1,70 @@
 require 'rails_helper'
 
-describe 'ユーザー認証のテスト' do
-  describe 'ユーザー新規登録' do
-    before do
-      visit new_user_registration_path
-    end
-    context '新規登録画面に遷移' do
-      it '新規登録に成功する' do
-        fill_in 'user[name]', with: Faker::Internet.username(specifier: 5)
-        fill_in 'user[email]', with: Faker::Internet.email
-        fill_in 'user[password]', with: 'password'
-        fill_in 'user[password_confirmation]', with: 'password'
-        click_button '登録する'
-      end
-      it '新規登録に失敗する' do
-        fill_in 'user[name]', with: ''
-        fill_in 'user[email]', with: ''
-        fill_in 'user[password]', with: ''
-        fill_in 'user[password_confirmation]', with: ''
-        click_button '登録する'
-      end
-    end
-  end
-  describe 'ユーザーログイン' do
-    let(:user) { create(:user) }
+describe 'ユーザー関連テスト' do
+  let(:user1) { create(:user) }
+  let(:user2) { create(:user) }
+  describe 'ログインしている場合' do
     before do
       visit new_user_session_path
-    end
-    context 'ログイン画面に遷移' do
-      let(:test_user) { user }
-      it 'ログインに成功する' do
-        fill_in 'user[email]', with: test_user.email
-        fill_in 'user[password]', with: test_user.password
-        click_button 'ログイン'
-      end
-      it 'ログインに失敗する' do
-        fill_in 'user[email]', with: ''
-        fill_in 'user[password]', with: ''
-        click_button 'ログイン'
-        expect(current_path).to eq(new_user_session_path)
-      end
-    end
-  end
-  describe 'ユーザー詳細' do
-    let(:user) { create(:user) }
-    before do
-      visit new_user_session_path
-      fill_in 'user[email]', with: user.email
-      fill_in 'user[password]', with: user.password
+      fill_in 'user[email]', with: user1.email
+      fill_in 'user[password]', with: user1.password
       click_button 'ログイン'
-      visit user_path(user)
     end
-    context 'ログインしている場合' do
+    context 'ユーザー詳細画面' do
+      before do
+        visit user_path(user1)
+      end
       it 'マイページと表示されている' do
         expect(page).to have_content 'マイページ'
       end
       it '名前が正しく表示されている' do
-        expect(page).to have_content '花子'
+        expect(page).to have_content user1.name
       end
-      it '自己紹介が表示されている' do
-        expect(page).to have_content 'hanako'
+      it '自己紹介が正しく表示されている' do
+        expect(page).to have_content user1.introduction
       end
-      it 'フォロー数の表示' do
-        expect(page).to have_content '0'
+      it 'フォロー数が表示されている' do
+        expect(page).to have_content user1.following_user.count
       end
-      it 'フォロワー数の表示' do
-        expect(page).to have_content '0'
+      it 'フォロワー数が表示されている' do
+        expect(page).to have_content user1.follower_user.count
+      end
+      it 'プロフィール編集リンクが表示されている' do
+        expect(page).to have_link '編集', href: edit_user_path(user1)
+      end
+      it '他人の編集リンクが表示されない' do
+        visit user_path(user2)
+        expect(page).to have_no_link '編集', href: edit_user_path(user2)
+      end
+    end
+    context 'ユーザー編集画面' do
+      before do
+        visit edit_user_path(user1)
+      end
+      it 'プロフィール編集と表示されている' do
+        expect(page).to have_content 'プロフィール編集'
+      end
+      it '名前が正しく表示されている' do
+        expect(page).to have_field 'user[name]', with: user1.name
+      end
+      it '自己紹介が正しく表示されている' do
+        expect(page).to have_field 'user[introduction]', with: user1.introduction
+      end
+      it '他人の編集画面に遷移できない' do
+        visit edit_user_path(user2)
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
+  describe 'ログインしていない場合' do
+    context 'ページ遷移が正しく行われない' do
+      it 'ログインページへリダイレクトする(show)' do
+        visit user_path(user1)
+        expect(current_path).to eq new_user_session_path
+      end
+      it 'ログインページへリダイレクトする(edit)' do
+        visit edit_user_path(user1)
+        expect(current_path).to eq new_user_session_path
       end
     end
   end

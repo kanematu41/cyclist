@@ -5,15 +5,15 @@ RSpec.describe Like, type: :model do
     @like = create(:like)
   end
 
-  it "必要項目を満たしていれば有効" do
+  it '必要項目を満たしていれば有効' do
     expect(@like).to be_valid
   end
-  it "user_idが存在していなければ無効" do
-    @like.user_id = ""
+  it 'user_idが存在していなければ無効' do
+    @like.user_id = ''
     expect(@like).not_to be_valid
   end
-  it "post_idが存在していなければ無効" do
-    @like.post_id = ""
+  it 'post_idが存在していなければ無効' do
+    @like.post_id = ''
     expect(@like).not_to be_valid
   end
 	# 	@like = build(:like)

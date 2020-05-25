@@ -5,19 +5,19 @@ RSpec.describe Comment, type: :model do
     @comment = create(:comment)
   end
 
-  it "必要項目を満たしていれば有効" do
+  it '必要項目を満たしていれば有効' do
     expect(@comment).to be_valid
   end
-  it "user_idが存在していなければ無効" do
-    @comment.user_id = ""
+  it 'user_idが存在していなければ無効' do
+    @comment.user_id = ''
     expect(@comment).not_to be_valid
   end
-  it "post_idが存在していなければ無効" do
-    @comment.post_id = ""
+  it 'post_idが存在していなければ無効' do
+    @comment.post_id = ''
     expect(@comment).not_to be_valid
   end
-  it "commentが存在していなければ無効" do
-    @comment.comment = ""
+  it 'commentが存在していなければ無効' do
+    @comment.comment = ''
     expect(@comment).not_to be_valid
   end
 end
