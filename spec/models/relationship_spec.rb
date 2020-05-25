@@ -7,15 +7,15 @@ RSpec.describe Relationship, type: :model do
 		@relationship = Relationship.new(follower_id: @user.id, followed_id: @other_user.id)
 	end
 
-	it "別のユーザーをフォローできる" do
+	it '別のユーザーをフォローできる' do
 		expect(@relationship).to be_valid
 	end
-	it "フォローユーザーが空だと無効" do
-		@relationship.follower_id = ""
+	it 'フォローユーザーが空だと無効' do
+		@relationship.follower_id = ''
 		expect(@relationship).not_to be_valid
 	end
-	it "フォロワーユーザーが空だと無効" do
-		@relationship.followed_id = ""
+	it 'フォロワーユーザーが空だと無効' do
+		@relationship.followed_id = ''
 		expect(@relationship).not_to be_valid
 	end
 end

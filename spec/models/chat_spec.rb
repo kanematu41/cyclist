@@ -5,19 +5,19 @@ RSpec.describe Chat, type: :model do
     @chat = create(:chat)
   end
 
-  it "必要項目を満たしていれば有効" do
+  it '必要項目を満たしていれば有効' do
     expect(@chat).to be_valid
   end
-  it "user_idが存在していなければ無効" do
-    @chat.user_id = ""
+  it 'user_idが存在していなければ無効' do
+    @chat.user_id = ''
     expect(@chat).not_to be_valid
   end
-  it "room_idが存在していなければ無効" do
-    @chat.room_id = ""
+  it 'room_idが存在していなければ無効' do
+    @chat.room_id = ''
     expect(@chat).not_to be_valid
   end
-  it "メッセージが存在していなければ無効" do
-    @chat.message = ""
+  it 'メッセージが存在していなければ無効' do
+    @chat.message = ''
     expect(@chat).not_to be_valid
   end
 end

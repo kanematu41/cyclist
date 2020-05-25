@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :chat do
     association :user
     association :room
-    message { "チャットコメント" }
+    message { 'チャットコメント' }
   end
 end

@@ -6,7 +6,7 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 
-#spec,support配下のrbファイルの読み込み(rspecで追加)
+# spec,support配下のrbファイルの読み込み(rspecで追加)未使用
 # Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Add additional requires below this line. Rails is not loaded until this point!

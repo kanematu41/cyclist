@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
     }
     config.fog_directory  = 's3-cyclist-image'
 
-    # rspecを走らせた時のusertのimageの保存先
+    # rspecを走らせた時のuserのimageの保存先
 		if Rails.env.test?
 		  config.cache_dir = "#{Rails.root}/public/uploads_test/cache"
 		end

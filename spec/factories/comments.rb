@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :comment do
     association :user
     association :post
-    comment { "投稿に対してのコメント" }
+    comment { '投稿に対してのコメント' }
   end
   # factory :notification_comment, class:Comment do
   # 	association :user, factory: :notification_comment_user
