@@ -2,8 +2,8 @@ class Admins::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def list
-  	user = User.find(params[:id])
-  	@posts = Post.page(params[:page]).reverse_order.where(user_id: user.id)
+  	@user = User.find(params[:id])
+  	@posts = Post.page(params[:page]).reverse_order.where(user_id: @user.id)
   end
 
   def show

@@ -15,6 +15,8 @@
 //= require jquery
 //= require bxslider
 //= require bootstrap-sprockets
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 $(document).ready(function(){
