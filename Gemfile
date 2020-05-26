@@ -74,11 +74,13 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'bootstrap-sass'
 gem 'bxslider-rails'
 gem "carrierwave"
+gem "chartkick"
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'dotenv-rails'
 gem 'fog-aws'
+gem 'groupdate'
 gem 'jquery-rails'
 gem 'kaminari','~> 1.1.1'
 gem 'paranoia'
@@ -90,3 +92,5 @@ gem "refile-mini_magick"
 # group :production do
   gem 'mysql2'
 # end
+
+

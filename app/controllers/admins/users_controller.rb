@@ -7,6 +7,9 @@ class Admins::UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @post_data = @user.posts.group("date(created_at)").count
+    @like_data = @user.likes.group("date(created_at)").count
+    @comment_data = @user.comments.group("date(created_at)").count
   end
 
   def update
