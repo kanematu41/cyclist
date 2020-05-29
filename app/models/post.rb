@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-	mount_uploaders :image, ImageUploader #carrierwave関連
+	mount_uploaders :image, ImageUploader # carrierwave関連
 	serialize :image
 	acts_as_taggable # タグ機能
 
