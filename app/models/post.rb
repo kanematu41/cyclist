@@ -19,7 +19,7 @@ class Post < ApplicationRecord
 	# コメント通知
 	def create_notification_comment!(current_user, comment_id)
 		# 投稿にコメントしている人を取得、全員に通知(自分以外)
-		temp_ids = Comment.select(:user_id).where(post_id: id).where.not(user_id: current_user.id).distinct
+		temp_ids = Comment.select(:user_id).where(post_id: id).where(user_id: current_user.id).distinct
 		# 1つの投稿に複数通知
 		temp_ids.each do |temp_id|
 			save_notification_comment!(current_user, comment_id, temp_id["user_id"])
@@ -62,8 +62,8 @@ class Post < ApplicationRecord
 	end
 
 	# 検索
-  def self.search(search, user_or_post)
-  	if user_or_post == "2"
+  def self.search(search, _user_or_post)
+  	if search
   		Post.where(["title LIKE ?", "%#{search}%"])
   	else
   		Post.all

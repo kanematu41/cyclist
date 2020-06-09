@@ -51,8 +51,8 @@ class User < ApplicationRecord
   end
 
   # 検索
-  def self.search(search, user_or_post)
-    if user_or_post == "1"
+  def self.search(search, _user_or_post)
+    if search
       User.where(["name LIKE ?", "%#{search}%"])
     else
       User.all
