@@ -18,7 +18,7 @@ class Post < ApplicationRecord
 
 	# コメント通知
 	def create_notification_comment!(current_user, comment_id)
-		# 投稿にコメントしている人を取得、全員に通知(自分以外)
+		# 投稿にコメントしている人を取得
 		temp_ids = Comment.select(:user_id).where(post_id: id).where(user_id: current_user.id).distinct
 		# 1つの投稿に複数通知
 		temp_ids.each do |temp_id|
