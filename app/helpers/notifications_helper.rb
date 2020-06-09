@@ -12,7 +12,7 @@ module NotificationsHelper
 				tag.a(@visiter.name, href:user_path(@visiter))+"が"+tag.a("あなたの投稿", href:post_path(@post))+"にいいねしました"
 			when "comment" then
 				tag.a(@visiter.name, href:user_path(@visiter))+"が"+tag.a("あなたの投稿", href:post_path(@post))+"にコメントしました"
-			end
+		end
 	end
 
 	def unchecked_notifications

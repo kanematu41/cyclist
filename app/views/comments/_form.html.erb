@@ -1,4 +1,7 @@
 <%= form_with(model: [post, comment]) do |f| %>
+<div id="error_explanation">
+	<%= render 'home/error_messages', model: f.object %>
+</div>
 	<%= f.text_area :comment, rows:"5", class:"form-control", placeholder:"コメントここに" %>
 	<%= f.submit "送信する", class:"pull-right" %>
 <% end %>

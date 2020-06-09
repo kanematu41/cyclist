@@ -30,7 +30,7 @@
 - Rspec (model/system)
 ### その他
 - 開発環境 (Vagrant, VirtualBox)
-- 本番環境 (AWS EC2,RDS,S3,Nginx,mysql)
+- 本番環境/AWS (EC2, RDS, S3, Nginx, mysql)
 
 ## 機能一覧
 https://docs.google.com/spreadsheets/d/1ujf2XDnHfN_Jxfd4Qi0Jzi0Fuy-Q2QFW8VtePGTZls4/edit#gid=0
