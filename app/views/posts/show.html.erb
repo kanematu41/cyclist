@@ -70,7 +70,9 @@
 	<div class="row">
 		<div class="col-xs-7 col-xs-offset-5">
 			<div class="action-post">
-			 <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+				<div id="form_area">
+			 		<%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+			 	</div>
 			</div>
 		</div>
 	</div>
