@@ -33,10 +33,10 @@ RSpec.describe Post, type: :model do
   end
   it 'ユーザー情報がなければ無効' do
   	post = Post.create(
-  		title: '投稿タイトル',
-  		body: '投稿説明',
-  		image: image
-  		)
+  		 title: '投稿タイトル',
+   		body: '投稿説明',
+   		image: image
+   )
   	expect(post).to be_invalid
   end
 end

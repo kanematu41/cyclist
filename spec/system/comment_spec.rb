@@ -36,5 +36,5 @@ describe '投稿に紐づくcommentテスト' do
         expect(page).to have_no_link '削除', href: post_comments_path(comment2)
       end
 	  end
-	end
+	 end
 end
