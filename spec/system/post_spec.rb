@@ -46,7 +46,7 @@ describe '投稿に関連テスト' do
 	  	end
 	  	it 'titleが正しく表示されている' do
         expect(page).to have_content post1.title
-      end
+    end
       it 'bodyが正しく表示されている' do
         expect(page).to have_content post1.body
       end
@@ -70,7 +70,7 @@ describe '投稿に関連テスト' do
       it 'いいね数の表示' do
         expect(page).to have_content post1.likes.count
       end
-    end
+   end
     context '編集画面' do
     	before do
     		visit edit_post_path(post1)
@@ -86,5 +86,5 @@ describe '投稿に関連テスト' do
         expect(current_path).to eq(root_path)
       end
     end
-	end
+	 end
 end

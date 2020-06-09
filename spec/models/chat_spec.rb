@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Chat, type: :model do
 	before do
     @chat = create(:chat)
-  end
+ end
 
   it '必要項目を満たしていれば有効' do
     expect(@chat).to be_valid
@@ -39,4 +39,3 @@ end
  #  	chat = Chat.create(user: FactoryBot.create(:user), message: "投稿に対してのコメント")
  #    expect(chat).not_to be_valid
  #  end
-

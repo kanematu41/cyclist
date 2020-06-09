@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :baria_user, only:[:edit, :timeline]
+  before_action :baria_user, only: %i[edit timeline]
 
   def show
   	@user = User.find(params[:id])
@@ -36,14 +36,13 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
   	params.require(:user).permit(:name, :introduction, :image)
   end
 
   def baria_user
     @user = User.find(params[:id])
-    if @user != current_user
-      redirect_to root_path
-    end
+    redirect_to root_path if @user != current_user
   end
 end

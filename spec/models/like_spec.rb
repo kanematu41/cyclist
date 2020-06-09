@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
 	before do
     @like = create(:like)
-  end
+ end
 
   it '必要項目を満たしていれば有効' do
     expect(@like).to be_valid

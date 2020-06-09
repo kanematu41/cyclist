@@ -10,12 +10,12 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy #フォロー取得
-  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy #フォロワー取得
-  has_many :following_user, through: :follower, source: :followed #自分がフォローしている
-  has_many :follower_user, through: :followed, source: :follower #自分をフォローしている
-  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy #自分からの通知
-  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy #相手からの通知
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
+  has_many :following_user, through: :follower, source: :followed # 自分がフォローしている
+  has_many :follower_user, through: :followed, source: :follower # 自分をフォローしている
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy # 自分からの通知
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy # 相手からの通知
   has_many :user_rooms
   has_many :chats
   has_many :rooms, through: :user_rooms
@@ -45,13 +45,13 @@ class User < ApplicationRecord
       notification = current_user.active_notifications.new(
         visited_id: id,
         action: "follow"
-        )
-      notification.save if notification.valid? #空でなければ
+      )
     end
+    notification.save if notification.valid? # 空でなければ
   end
 
-  #検索
-  def User.search(search, user_or_post)
+  # 検索
+  def self.search(search, user_or_post)
     if user_or_post == "1"
       User.where(["name LIKE ?", "%#{search}%"])
     else

@@ -3,14 +3,15 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     # ログインの分岐
-  	if resource.is_a?(User)
+   if resource.is_a?(User)
     	posts_path
-    elsif resource.is_a?(Admin)
+   elsif resource.is_a?(Admin)
     	admins_users_path
-    end
+   end
   end
 
   protected
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end

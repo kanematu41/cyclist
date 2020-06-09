@@ -10,7 +10,7 @@ class Post < ApplicationRecord
 
 	validates :title, presence: true
 	validates :body, presence: true
-	validates :image, presence: { message: "を選択してください"}
+	validates :image, presence: { message: "を選択してください" }
 
 	def liked_by?(user)
 		likes.where(user_id: user.id).exists?
@@ -28,22 +28,18 @@ class Post < ApplicationRecord
 		save_notification_comment!(current_user, comment_id, user_id) if temp_ids.blank?
 	end
 
-	def save_notification_comment!(current_user, comment_id, visited_id)
+	def save_notification_comment!(current_user, comment_id, _visited_id)
 		notification = current_user.active_notifications.new(
-			post_id: id,
-			comment_id: comment_id,
-			visited_id: user_id,
-			action: "comment"
-			)
+			 post_id: id,
+ 			comment_id: comment_id,
+ 			visited_id: user_id,
+ 			action: "comment"
+	 )
 
 		# 自分に対して、通知済み
-		if notification.visiter_id == notification.visited_id
-			notification.checked = true
-		end
+		notification.checked = true if notification.visiter_id == notification.visited_id
 		# 自分が投稿＝ログインユーザー 通知しない
-		if notification.valid? && Post.find(id).user.id != current_user.id
-			notification.save
-		end
+		notification.save if notification.valid? && Post.find(id).user.id != current_user.id
 	end
 
 	# いいね通知
@@ -54,24 +50,19 @@ class Post < ApplicationRecord
 		# いいねされていないとき
 		if temp.blank?
 			notification = current_user.active_notifications.new(
-				post_id: id,
-				visited_id: user_id,
-				action: "like"
-				)
-
-			# 自分に対して、通知済み
-			if notification.visiter_id == notification.visited_id
-				notification.checked = true
-			end
-			# 投稿ユーザー＝ログインユーザー 通知しない
-			if notification.valid? && Post.find(id).user.id != current_user.id
-				notification.save
-			end
+				 post_id: id,
+ 				visited_id: user_id,
+ 				action: "like"
+		 )
 		end
+		# 自分に対して、通知済み
+		notification.checked = true if notification.visiter_id == notification.visited_id
+		# 投稿ユーザー＝ログインユーザー 通知しない
+		notification.save if notification.valid? && Post.find(id).user.id != current_user.id
 	end
 
-	#検索
-  def Post.search(search, user_or_post)
+	# 検索
+  def self.search(search, user_or_post)
   	if user_or_post == "2"
   		Post.where(["title LIKE ?", "%#{search}%"])
   	else

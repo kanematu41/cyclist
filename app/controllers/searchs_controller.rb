@@ -13,9 +13,7 @@ class SearchsController < ApplicationController
   end
 
   def tag
-    if params[:tag_name]
-      @tag_name = params[:tag_name]
-      @posts = Post.page(params[:page]).reverse_order.tagged_with("#{params[:tag_name]}")
-    end
+    @tag_name = params[:tag_name]
+    @posts = Post.page(params[:page]).reverse_order.tagged_with(params[:tag_name].to_s) if params[:tag_name]
   end
 end

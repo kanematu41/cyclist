@@ -65,12 +65,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  config.include FactoryBot::Syntax::Methods #追加
+  config.include FactoryBot::Syntax::Methods # 追加
 
 # rspecのファイルの削除(carrierwave.rbで指定してるimageの削除)
   config.after(:all) do
-    if Rails.env.test?
-      FileUtils.rm_rf(Rails.root + "public/uploads_test")
-     end
+    FileUtils.rm_rf(Rails.root + "public/uploads_test") if Rails.env.test?
   end
 end

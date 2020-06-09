@@ -6,8 +6,8 @@ class CommentsController < ApplicationController
 		@comment = @post.comments.new(comment_params)
 		@comment.user_id = current_user.id
 		if @comment.save
-			@comment_post = @comment.post #コメントに紐づく投稿
-			@comment_post.create_notification_comment!(current_user, @comment.id) #コメント通知
+			@comment_post = @comment.post # コメントに紐づく投稿
+			@comment_post.create_notification_comment!(current_user, @comment.id) # コメント通知
 			render :index
 		else
 			render :error
@@ -20,7 +20,8 @@ class CommentsController < ApplicationController
 		render :index
 	end
 
-	private
+	 private
+
 	def comment_params
 		params.require(:comment).permit(:comment)
 	end

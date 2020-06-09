@@ -18,10 +18,10 @@ RSpec.describe User, type: :model do
   end
   it 'emailが重複で無効' do
   	User.create(
-  		name: 'テスト太郎',
-  		email: 'test@example.com',
-  		password: 'password',
-  		)
+  		 name: 'テスト太郎',
+   		email: 'test@example.com',
+   		password: 'password'
+   )
     @user.email = 'test@example.com'
     expect(@user).not_to be_valid
   end

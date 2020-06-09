@@ -1,5 +1,4 @@
 module ApplicationHelper
-
 # flashメッセージ
   def bootstrap_class_for(flash_type)
     case flash_type
@@ -24,7 +23,7 @@ module ApplicationHelper
     resource.errors.full_messages.each do |err_msg|
       errors_html += <<-EOF
           <div class="alert-danger pl-3">#{err_msg}</div>
-                     EOF
+      EOF
     end
     errors_html.html_safe
   end

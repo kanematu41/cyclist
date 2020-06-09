@@ -1,17 +1,16 @@
 module NotificationsHelper
-
 	def notification_form(notification)
 		@visiter = notification.visiter
 		@post = notification.post_id
 
 		# actionの選択
 		case notification.action
-			when "follow" then
-				tag.a(@visiter.name, href:user_path(@visiter))+"があなたをフォロしました"
-			when "like" then
-				tag.a(@visiter.name, href:user_path(@visiter))+"が"+tag.a("あなたの投稿", href:post_path(@post))+"にいいねしました"
-			when "comment" then
-				tag.a(@visiter.name, href:user_path(@visiter))+"が"+tag.a("あなたの投稿", href:post_path(@post))+"にコメントしました"
+  when "follow"
+				tag.a(@visiter.name, href: user_path(@visiter)) + "があなたをフォロしました"
+  when "like"
+				tag.a(@visiter.name, href: user_path(@visiter)) + "が" + tag.a("あなたの投稿", href: post_path(@post)) + "にいいねしました"
+  when "comment"
+				tag.a(@visiter.name, href: user_path(@visiter)) + "が" + tag.a("あなたの投稿", href: post_path(@post)) + "にコメントしました"
 		end
 	end
 

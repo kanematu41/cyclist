@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
 	before do
     @comment = create(:comment)
-  end
+ end
 
   it '必要項目を満たしていれば有効' do
     expect(@comment).to be_valid
